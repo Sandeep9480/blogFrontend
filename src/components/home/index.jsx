@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./index.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../..";
 
 const HomePage = () => {
   // State to store all notes
@@ -19,12 +20,9 @@ const HomePage = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:4000/getUserDetails",
-          {
-            params: { token: localStorage.getItem("token") },
-          }
-        );
+        const response = await axios.get(`${BASE_URL}/getUserDetails`, {
+          params: { token: localStorage.getItem("token") },
+        });
         setUserDetails(response.data);
       } catch (error) {
         setError("Failed to get User Details");
@@ -40,7 +38,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/get_all_note");
+        const response = await axios.get(`${BASE_URL}/get_all_note`);
         setAllNotes(response.data.allNotes); // Correct merging
         setLoading(false);
       } catch (err) {
@@ -62,7 +60,7 @@ const HomePage = () => {
 
     try {
       // Create the note
-      const response = await axios.post("http://localhost:4000/create_note", {
+      const response = await axios.post(`${BASE_URL}/create_note`, {
         token: localStorage.getItem("token"),
         title: noteTitle,
         body: noteBody,
@@ -73,9 +71,7 @@ const HomePage = () => {
       setError(""); // Clear any previous error
 
       // Optionally, refetch all notes to update the state
-      const fetchResponse = await axios.get(
-        "http://localhost:4000/get_all_note"
-      );
+      const fetchResponse = await axios.get(`${BASE_URL}/get_all_note`);
       if (fetchResponse.data.allNotes) {
         setAllNotes(fetchResponse.data.allNotes); // Update the state with all notes
       } else {
@@ -90,7 +86,7 @@ const HomePage = () => {
   // Delete a note
   const deleteNote = async (noteId) => {
     try {
-      await axios.delete("http://localhost:4000/delete_note", {
+      await axios.delete(`${BASE_URL}/delete_note`, {
         data: {
           token: localStorage.getItem("token"),
           note_id: noteId,
@@ -121,7 +117,7 @@ const HomePage = () => {
 
     try {
       // Update the note on the server
-      const response = await axios.post("http://localhost:4000/update_note", {
+      const response = await axios.post(`${BASE_URL}/update_note`, {
         note_id: editingNote._id,
         title: noteTitle,
         body: noteBody,
@@ -134,9 +130,7 @@ const HomePage = () => {
       setError(""); // Clear any previous error
 
       // Optionally, refetch all notes to update the state
-      const fetchResponse = await axios.get(
-        "http://localhost:4000/get_all_note"
-      );
+      const fetchResponse = await axios.get(`${BASE_URL}/get_all_note`);
       if (fetchResponse.data.allNotes) {
         setAllNotes(fetchResponse.data.allNotes); // Update the state with all notes
       } else {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./index.css"; // Ensure your CSS file is correctly linked
 import { useNavigate } from "react-router-dom";
+import { BASE_URL, clientServer } from "../..";
 
 export const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export const LoginComponent = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/register", {
+      const response = await axios.post(`${BASE_URL}/register`, {
         username,
         name,
         email,
@@ -37,7 +38,7 @@ export const LoginComponent = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/login", {
+      const response = await axios.post(`${BASE_URL}/login`, {
         email,
         password,
       });

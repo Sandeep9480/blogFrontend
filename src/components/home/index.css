@@ -1,0 +1,245 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    /* Darker background for a more sleek look */
+    color: #fff;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Forces the vertical scrollbar to always appear */
+
+    height: 50% !important;
+    /* Makes the page taller than the viewport, forcing a scrollbar */
+    overflow-y: scroll !important;
+}
+
+/* Container for Notes */
+.container {
+    background-color: rgba(255, 255, 255, 0.12);
+    /* Slightly transparent white */
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for the container */
+    backdrop-filter: blur(15px);
+    /* A more prominent blur effect */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    /* Smooth transition */
+}
+
+.operations {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1.2rem;
+}
+
+.operations svg {
+    width: 20px;
+
+}
+
+/* Create Note Section */
+.createNote {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 30px;
+}
+
+.createNote input,
+.createNote textarea {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.266);
+    color: #fff;
+    width: 100%;
+    transition: border 0.3s ease;
+}
+
+.createNote textarea {
+    height: 55px;
+    overflow: hidden;
+    /* Hide the scrollbar */
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+
+    /* Webkit Browsers (Chrome, Safari, etc.) */
+
+}
+
+.createNote input::placeholder {
+    color: rgba(255, 255, 255, 0.364);
+}
+
+.createNote input:focus,
+.createNote textarea:focus {
+    outline: none;
+    border: 1px solid #3498db;
+    /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.8);
+    /* Blue glow effect */
+}
+
+.createNote svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.createNote svg:hover {
+    transform: scale(1.1);
+    /* Slightly scale the SVG on hover */
+}
+
+/* Title and Body of Notes */
+ul li {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Soft white background for notes */
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    color: #f1f1f1;
+    list-style-type: none;
+}
+
+ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    /* Hover effect with shadow */
+}
+
+ul li h3 {
+    font-size: 1.8rem;
+    color: #f7eeeec5;
+    /* Soft off-white color for titles */
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Algerian', sans-serif;
+    letter-spacing: 1px;
+}
+
+ul li p {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+.writer p {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+/* Loading, Error and No Notes Available */
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+p.loading {
+    font-size: 1.4rem;
+    color: #3498db;
+}
+
+p.error {
+    font-size: 1.4rem;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.no-notes {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    ul li {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    ul li h3 {
+        font-size: 1.5rem;
+    }
+
+    ul li p {
+        font-size: 1rem;
+    }
+
+    .createNote input,
+    .createNote textarea {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .createNote {
+        flex-direction: column;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    ul li h3 {
+        font-size: 1.4rem;
+    }
+
+    ul li p {
+        font-size: 0.9rem;
+    }
+
+    .createNote input,
+    .createNote textarea {
+        font-size: 0.9rem;
+    }
+}

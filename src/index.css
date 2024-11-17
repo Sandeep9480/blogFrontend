@@ -1,0 +1,8 @@
+body {
+    overflow-y: scroll;
+    /* Forces the vertical scrollbar to always appear */
+
+    min-height: 150vh;
+    /* Makes the page taller than the viewport, forcing a scrollbar */
+    overflow-y: scroll;
+}
